@@ -11,6 +11,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.1",
         "spatie/laravel-permission": "3.18.0"
     },
     "require-dev": {

@@ -46,40 +46,38 @@
                             
                                 @error('email')
                                     <span class="invalid-feedback">
-                                        Masukkan Alamat Email
+                                        <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                    </div>
+                        </div>
 
-                    <div class="form-group">
-                        <div class="d-block">
+                        <div class="form-group">
                             <label for="password" class="control-label">Password</label>
+                            <input id="password" type="password" 
+                                class="form-control @error('password') is-invalid @enderror" 
+                                name="password" tabindex="2" 
+                                placeholder="Masukkan Password"
+                                required>
+
+                                @error('password')
+                                    <span class="invalid-feedback">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
-                        <input id="password" type="password" 
-                            class="form-control @error('password') is-invalid @enderror" 
-                            name="password" tabindex="2" 
-                            placeholder="Masukkan Password"
-                            required>
 
-                            @error('password')
-                                <span class="invalid-feedback">
-                                    Masukkan Password
-                                </span>
-                            @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
-                        <label class="custom-control-label" for="remember-me">Remember Me</label>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+                            <label class="custom-control-label" for="remember-me">Remember Me</label>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                        Login
-                        </button>
-                    </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                            Login
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

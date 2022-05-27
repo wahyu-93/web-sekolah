@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PermissionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +27,12 @@ Route::prefix('admin')->group(function(){
     Route::group(['middleware' => 'auth'], function(){
         // dashboard
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
+
+        // permissions
+        Route::resource('/permission', PermissionController::class, [
+            'except' => [
+                'show', 'create', 'update', 'edit', 'destroy'
+            ], 
+            'as' => 'admin']);
     });
 });

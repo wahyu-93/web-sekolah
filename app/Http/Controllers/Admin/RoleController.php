@@ -23,7 +23,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::latest()->when(request()->q, function($roles){
-            $roles = $roles->where('name', 'like', '%' . request()->q .'%')
+            $roles = $roles->where('name', 'like', '%' . request()->q .'%');
         })->paginate(5);
 
         return view('admin.role.index', compact('roles'));
@@ -49,7 +49,26 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validasi role 
+        $this->validate($request,[
+            'name'  => 'required|unique:roles'
+        ]);
+
+        $role = Role::create([
+            'name'  => $request->input('name')
+        ]);
+
+        // assign permission to role
+        $role->syncPermissions($request->input('permissions'));
+
+        if($role){
+            // redirect pesan success
+            return redirect()->route('admin.role.index')->with(['success' => 'Data Berhasil Disimpan']);
+        }
+        else{
+            // redirect pesan error
+            return redirect()->route('admin.role.index')->with(['error' => 'Data Gagal Disimpan']);
+        }
     }
 
     /**
@@ -69,9 +88,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+        $permissions = Permission::latest()->get();
+        return view('admin.role.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -81,9 +101,27 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $this->validate($request,[
+            'name'  => 'required|unique:roles,name'.$role->id
+        ]);
+
+        $role = Role::findOrFail($role->id);
+        $role->update([
+            'name'  => $request->input('name')
+        ]);
+
+        // assign Permission to role
+        $role->syncPermissions($request->input('permissions'));
+        if($role){
+            // redirect pesan success
+            return redirect()->route('admin.role.index')->with(['success' => 'Data Berhasil Diupdate']);
+        }
+        else{
+            // redirect pesan error
+            return redirect()->route('admin.role.index')->with(['error' => 'Data Gagal Diupdate']);
+        }
     }
 
     /**
@@ -94,6 +132,20 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $permissions = $role->permissions;
+        $role->revokePermissions($permissions);
+        $role->delete;
+
+        if($role){
+            return response()->json([
+                'status' => 'success'
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'error'
+            ]);
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,5 +35,12 @@ Route::prefix('admin')->group(function(){
                 'show', 'create', 'update', 'edit', 'destroy'
             ], 
             'as' => 'admin']);
+
+        Route::resource('/role', RoleController::class, [
+            'except' => [
+                'show'
+            ],
+            'as' => 'admin'    
+        ]);
     });
 });

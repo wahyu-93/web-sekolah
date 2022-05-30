@@ -168,7 +168,7 @@
                             <ul class="dropdown-menu">
                                 @can('roles.index')
                                 <li class="{{ setActive('admin/role') }}">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('admin.role.index') }}" class="nav-link">
                                         <i class="fas fa-unlock"></i>
                                         Roles
                                     </a>

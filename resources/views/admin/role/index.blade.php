@@ -64,7 +64,7 @@
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
 
-                                            <button class="btn btn-sm btn-danger" id="{{ $role->id }}">
+                                            <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $role->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </td>
@@ -75,14 +75,75 @@
                         </table>
     
                         <div style="text-align: center">
-                           
+                            {{ $roles->links("vendor.pagination.bootstrap-4") }}
                         </div>
                     </div>
-    
-    
                 </div>
             </div>
         </div>
     </section>
 </div>
+
+<script>
+    // ajax delete
+    function Delete(id)
+    {
+        var id = id
+        var token = $("mete[name='csrf-token']").attr("content");
+
+        swal({
+            title: "Apakah Kamu Yakin?",
+            text: "Ingin Mengahapus Data ini ?",
+            icon: "warning",
+            buttons: [
+                'Tidak',
+                'Ya'
+            ],
+            dangerMode: true,
+        }).then(function(isConfirm){
+            if(isConfirm){
+                // ajax delete
+                JQuery.ajax({
+                    url: "/admin/role/"+id,
+                    data: {
+                        "id": id,
+                        "_token": token
+                    },
+                    type: 'DELETE',
+                    success: function(response){
+                        if(response.status == "success"){
+                            swal({
+                                title: 'Berhasil',
+                                text: 'Data Berhasil Dihapus',
+                                icon: 'success',
+                                timer: 1000,
+                                showConfirmButton: false,
+                                showConfirmButton: false,
+                                buttons: false,
+                            }).then(function(){
+                                location.reload()
+                            });
+                        }
+                        else{
+                            swal({
+                                title: 'Gagal',
+                                text: 'Data Gagal Dihapus',
+                                icon: 'error',
+                                timer: 1000,
+                                showConfirmButton: false,
+                                showConfirmButton: false,
+                                buttons: false,
+                            }).then(function(){
+                                location.reload()
+                            });
+                        }
+                    }
+                });
+            }
+            else{
+                return true
+            }
+        })
+    }
+</script>
 @endsection

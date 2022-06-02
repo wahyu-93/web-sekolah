@@ -19,7 +19,7 @@ class PermissionController extends Controller
         $permissions = Permission::latest()->when(request()->q, function($permissions){
             $permissions = $permissions->where('name', 'like', '%' . request()->q . '%');
         })->paginate(5);
-        
+
         return view('admin.permission.index', compact('permissions'));
     }
 }

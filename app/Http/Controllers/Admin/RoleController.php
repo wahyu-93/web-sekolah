@@ -36,8 +36,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::latest();
-
+        $permissions = Permission::latest()->get();
+        
         return view('admin.role.create', compact('permissions'));
     }
 
@@ -53,7 +53,7 @@ class RoleController extends Controller
         $this->validate($request,[
             'name'  => 'required|unique:roles'
         ]);
-
+        
         $role = Role::create([
             'name'  => $request->input('name')
         ]);
@@ -134,8 +134,8 @@ class RoleController extends Controller
     {
         $role = Role::findOrFail($id);
         $permissions = $role->permissions;
-        $role->revokePermissions($permissions);
-        $role->delete;
+        $role->revokePermissionTo($permissions);
+        $role->delete();
 
         if($role){
             return response()->json([

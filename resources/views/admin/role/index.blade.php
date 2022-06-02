@@ -89,8 +89,8 @@
     function Delete(id)
     {
         var id = id
-        var token = $("mete[name='csrf-token']").attr("content");
-
+        var token = $("meta[name='csrf-token']").attr("content");
+        console.log(token)
         swal({
             title: "Apakah Kamu Yakin?",
             text: "Ingin Mengahapus Data ini ?",
@@ -103,7 +103,7 @@
         }).then(function(isConfirm){
             if(isConfirm){
                 // ajax delete
-                JQuery.ajax({
+                jQuery.ajax({
                     url: "/admin/role/"+id,
                     data: {
                         "id": id,

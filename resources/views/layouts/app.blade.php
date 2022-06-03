@@ -187,7 +187,7 @@
             
                                 @can('users.index')
                                 <li class="{{ setActive('admin/user') }}">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('admin.user.index') }}" class="nav-link">
                                         <i class="fas fa-users"></i>
                                         <span>Users</span>
                                     </a>

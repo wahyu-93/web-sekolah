@@ -49,8 +49,8 @@ class UserController extends Controller
     {
         $this->validate($request,[
             'name'  => 'required',
-            'email' => 'required|email|unique.users',
-            'password' => 'required|confirm'
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed'
         ]);
 
         $user = User::create([
@@ -79,7 +79,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $roles = Role::latest()->get();
-        return view('admin.user.edit', compact('roles'));
+        $user = User::findOrFail($id);
+
+        return view('admin.user.edit', compact('roles', 'user'));
     }
 
     /**
@@ -93,7 +95,7 @@ class UserController extends Controller
     {
         $this->validate($request,[
             'name'  => 'required',
-            'email' => 'required|email|unique.users,email,' . $user->id
+            'email' => 'required|email|unique:users,email,' . $user->id
         ]);
 
         $user = User::findOrFail($user->id);

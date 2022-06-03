@@ -45,7 +45,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col" style="text-align: center; width: 6%">No</th>
-                                    <th scope="col" style="width : 15% ">Nama User</th>
+                                    <th scope="col">Nama User</th>
                                     <th scope="col">Role</th>
                                     <th scope="col" style="width : 15%; text-align : center">Aksi</th>
                                 </tr>

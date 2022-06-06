@@ -50,7 +50,7 @@
                             Update
                         </button>
                         
-                        <button class="btn btn-warning btn-rese" type="reset">
+                        <button class="btn btn-warning btn-reset" type="reset">
                             <i class="fa fa-redo"></i>
                             Reset
                         </button>

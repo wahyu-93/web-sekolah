@@ -4,7 +4,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Tambah Role</h1>
+            <h1>Tambah Tag</h1>
         </div>
 
         <div class="section-body">
@@ -12,17 +12,17 @@
                 <div class="card-header">
                     <h4>
                         <i class="fas fa-unlock"></i>
-                        Tambah Role
+                        Tambah Tag
                     </h4>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.role.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.tag.store') }}" method="POST">
                         @csrf
 
                         <div class="form-group">
-                            <label for="name">Nama Role</label>
-                            <input type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Masukkan Nama Role"
+                            <label for="name">Nama Tag</label>
+                            <input type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Masukkan Nama Tag"
                                 class="form-control @error('name') is-invalid @enderror">
                             
                             @error('name')
@@ -30,16 +30,6 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label style="font-weight: bold">Permissions</label>
-                            @foreach ($permissions as $permission)
-                                <input type="checkbox" name="permissions[]" id="check-{{ $permission->id }}" value="{{ $permission->name }}">
-                                <label for="check-{{ $permission->id }}" class="form-check-label">
-                                    {{ $permission->name }}
-                                </label>
-                            @endforeach
                         </div>
 
                         <button class="btn btn-primary mr-1 btn-submit" type="submit">

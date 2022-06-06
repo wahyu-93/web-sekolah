@@ -94,7 +94,7 @@
 
                         @can('tags.index')
                         <li class="{{ setActive('admin/taf') }}">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.tag.index') }}" class="nav-link">
                                 <i class="fas fa-tags"></i>
                                 <span>Tags</span>
                             </a>

@@ -103,7 +103,7 @@
 
                         @can('categories.index')
                         <li class="{{ setActive('admin/category') }}">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.category.index') }}" class="nav-link">
                                 <i class="fas fa-folder"></i>
                                 <span>Kategori</span>
                             </a>

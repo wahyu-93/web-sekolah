@@ -29,6 +29,6 @@ class Post extends Model
 
     public function getCratedAtAttribute($date)
     {
-        return Carbon::parse($data)->format('d-M-Y');
+        return Carbon::parse($date)->format('d-M-Y');
     }
 }

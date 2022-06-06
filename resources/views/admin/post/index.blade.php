@@ -4,32 +4,32 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Categories</h1>
+            <h1>Berita</h1>
         </div>
 
         <div class="section-body">
             <div class="card">
                 <div class="card-header">
                     <h4>
-                        <i class="fas fa-folder"></i>
-                        Categories
+                        <i class="fas fa-book-open"></i>
+                        Berita
                     </h4>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.category.index') }}" method="GET">
+                    <form action="{{ route('admin.post.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                @can('categories.create')
+                                @can('posts.create')
                                     <div class="input-group-prepend">
-                                        <a href="{{ route('admin.category.create') }}" class="btn btn-primary" style="padding-top: 10px;">
+                                        <a href="{{ route('admin.post.create') }}" class="btn btn-primary" style="padding-top: 10px;">
                                             <i class="fa fa-plus-circle"></i>
                                             Tambah
                                         </a>
                                     </div>
                                 @endcan
                                
-                                <input type="text" name="q" id="q" class="form-control" placeholder="cari berdasarkan category">
+                                <input type="text" name="q" id="q" class="form-control" placeholder="cari berdasarkan judul berita">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-search"></i>
@@ -45,24 +45,25 @@
                             <thead>
                                 <tr>
                                     <th scope="col" style="text-align: center; width: 6%">No</th>
-                                    <th scope="col" style="width : 60% ">Nama Category</th>
+                                    <th scope="col">Judul Berita</th>
+                                    <th scope="col">Kategori</th>
                                     <th scope="col" style="width : 15%; text-align : center">Aksi</th>
                                 </tr>
                             </thead>
     
                             <tbody>
-                                @foreach($categorys as $no => $category)
+                                @foreach($posts as $no => $post)
                                     <tr>
-                                        <th scope="col" style="text-align: center;">{{++$no + ($categorys->currentPage()-1) * $categorys->perPage() }}</th>
-                                        
-                                        <td>{{ $category->name }}</td>
+                                        <th scope="col" style="text-align: center;">{{++$no + ($posts->currentPage()-1) * $posts->perPage() }}</th>
+                                        <td>{{ $post->title }}</td>
+                                        <td>{{ $post->category->name }}</td>
                                         
                                         <td class="text-center">
-                                            <a href="{{ route('admin.category.edit', [$category->id]) }}" class="btn btn-sm btn-primary">
+                                            <a href="{{ route('admin.post.edit', [$post->id]) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
 
-                                            <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $category->id }}">
+                                            <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $post->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </td>
@@ -73,7 +74,7 @@
                         </table>
     
                         <div style="text-align: center">
-                            {{ $categorys->links("vendor.pagination.bootstrap-4") }}
+                            {{ $posts->links("vendor.pagination.bootstrap-4") }}
                         </div>
                     </div>
                 </div>
@@ -101,7 +102,7 @@
             if(isConfirm){
                 // ajax hapus
                 jQuery.ajax({
-                    url: "/admin/category/"+id,
+                    url: "/admin/post/"+id,
                     data: {
                         "id": id,
                         "_token": token

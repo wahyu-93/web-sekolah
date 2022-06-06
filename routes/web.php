@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
@@ -59,7 +60,10 @@ Route::prefix('admin')->group(function(){
         // tags
         Route::resource('/tag', TagController::class,['except' => ['show'], 'as' => 'admin']);
 
-        // categoory
+        // categories
         Route::resource('/category', CategoryController::class, ['except' => ['show'], 'as' => 'admin']);
+
+        // posts
+        Route::resource('/post', PostController::class, ['except' => ['show'], 'as' => 'admin']);
     });
 });

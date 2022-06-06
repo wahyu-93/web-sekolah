@@ -93,10 +93,10 @@ class CategoryController extends Controller
         ]);
 
         if($category){
-            return redirect()->route('admin.category.index')->with(['message' => 'Data Berhasil Disimpan']);
+            return redirect()->route('admin.category.index')->with(['message' => 'Data Berhasil Diupdate']);
         }
         else {
-            return redirect()->route('admin.category.index')->with(['message' => 'Data Gagal Disimpan']);
+            return redirect()->route('admin.category.index')->with(['message' => 'Data Gagal Diupdate']);
         };
     }
 

@@ -9,6 +9,13 @@
 
         <div class="section-body">
             <div class="card">
+                <div class="card-header">
+                    <h4>
+                        <i class="fas fa-tags"></i>
+                        Tags
+                    </h4>
+                </div>
+
                 <div class="card-body">
                     <form action="{{ route('admin.tag.index') }}" method="GET">
                         <div class="form-group">

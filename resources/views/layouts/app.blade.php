@@ -85,7 +85,7 @@
 
                         @can('posts.index')
                         <li class="{{ setActive('admin/post') }}">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.post.index') }}" class="nav-link">
                                 <i class="fas fa-book-open"></i>
                                 <span>Berita</span>
                             </a>

@@ -11,7 +11,7 @@ class EventController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permsission:events.index|events.create|events.edit|events.delete']);    
+        $this->middleware(['permission:events.index|events.create|events.edit|events.delete']);    
     }
 
     /**
@@ -25,7 +25,7 @@ class EventController extends Controller
             $events = $events->where('title', 'like', '%' . request()->q . '%');
         })->paginate(10);
 
-        return view('admin.post.index',compact('events'));
+        return view('admin.event.index',compact('events'));
     }
 
     /**

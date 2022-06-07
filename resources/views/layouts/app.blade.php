@@ -112,7 +112,7 @@
 
                         @can('events.index')
                         <li class="{{ setActive('admin/event') }}">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.event.index') }}" class="nav-link">
                                 <i class="fas fa-bell"></i>
                                 <span>Agenda</span>
                             </a>

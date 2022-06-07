@@ -4,32 +4,32 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Kategori</h1>
+            <h1>Agenda</h1>
         </div>
 
         <div class="section-body">
             <div class="card">
                 <div class="card-header">
                     <h4>
-                        <i class="fas fa-folder"></i>
-                        Kategori
+                        <i class="fas fa-bell"></i>
+                        Agenda
                     </h4>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.category.index') }}" method="GET">
+                    <form action="{{ route('admin.event.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                @can('categories.create')
+                                @can('events.create')
                                     <div class="input-group-prepend">
-                                        <a href="{{ route('admin.category.create') }}" class="btn btn-primary" style="padding-top: 10px;">
+                                        <a href="{{ route('admin.event.create') }}" class="btn btn-primary" style="padding-top: 10px;">
                                             <i class="fa fa-plus-circle"></i>
                                             Tambah
                                         </a>
                                     </div>
                                 @endcan
                                
-                                <input type="text" name="q" id="q" class="form-control" placeholder="cari berdasarkan category">
+                                <input type="text" name="q" id="q" class="form-control" placeholder="cari berdasarkan event">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-search"></i>
@@ -45,24 +45,27 @@
                             <thead>
                                 <tr>
                                     <th scope="col" style="text-align: center; width: 6%">No</th>
-                                    <th scope="col" style="width : 60% ">Nama Category</th>
+                                    <th scope="col">Judul Agenda</th>
+                                    <th scope="col">Lokasi</th>
+                                    <th scope="col">Tanggal</th>
                                     <th scope="col" style="width : 15%; text-align : center">Aksi</th>
                                 </tr>
                             </thead>
     
                             <tbody>
-                                @foreach($categorys as $no => $category)
+                                @foreach($events as $no => $event)
                                     <tr>
-                                        <th scope="col" style="text-align: center;">{{++$no + ($categorys->currentPage()-1) * $categorys->perPage() }}</th>
-                                        
-                                        <td>{{ $category->name }}</td>
+                                        <th scope="col" style="text-align: center;">{{++$no + ($events->currentPage()-1) * $events->perPage() }}</th>
+                                        <td>{{ $event->title }}</td>
+                                        <td>{{ $event->location }}</td>
+                                        <td>{{ $event->date }}</td>
                                         
                                         <td class="text-center">
-                                            <a href="{{ route('admin.category.edit', [$category->id]) }}" class="btn btn-sm btn-primary">
+                                            <a href="{{ route('admin.event.edit', [$event->id]) }}" class="btn btn-sm btn-primary">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
 
-                                            <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $category->id }}">
+                                            <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $event->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </td>
@@ -73,7 +76,7 @@
                         </table>
     
                         <div style="text-align: center">
-                            {{ $categorys->links("vendor.pagination.bootstrap-4") }}
+                            {{ $events->links("vendor.pagination.bootstrap-4") }}
                         </div>
                     </div>
                 </div>
@@ -101,7 +104,7 @@
             if(isConfirm){
                 // ajax hapus
                 jQuery.ajax({
-                    url: "/admin/category/"+id,
+                    url: "/admin/event/"+id,
                     data: {
                         "id": id,
                         "_token": token

@@ -4,7 +4,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Tambah Category</h1>
+            <h1>Tambah Kategori</h1>
         </div>
 
         <div class="section-body">
@@ -12,7 +12,7 @@
                 <div class="card-header">
                     <h4>
                         <i class="fas fa-unlock"></i>
-                        Tambah Category
+                        Tambah Kategori
                     </h4>
                 </div>
 

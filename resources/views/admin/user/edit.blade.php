@@ -4,7 +4,7 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Edit User</h1>
+            <h1>Ubah User</h1>
         </div>
 
         <div class="section-body">
@@ -12,7 +12,7 @@
                 <div class="card-header">
                     <h4>
                         <i class="fas fa-unlock"></i>
-                        Edit User
+                        Ubah User
                     </h4>
                 </div>
 

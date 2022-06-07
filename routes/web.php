@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RoleController;
@@ -65,5 +66,8 @@ Route::prefix('admin')->group(function(){
 
         // posts
         Route::resource('/post', PostController::class, ['except' => ['show'], 'as' => 'admin']);
+
+        // event
+        Route::resource('/event', EventController::class, ['except' => ['show'], 'as' => 'admin']);
     });
 });

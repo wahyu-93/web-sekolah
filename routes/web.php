@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\TagController;
@@ -69,5 +70,9 @@ Route::prefix('admin')->group(function(){
 
         // event
         Route::resource('/event', EventController::class, ['except' => ['show'], 'as' => 'admin']);
+
+        // photo
+        Route::resource('/photo', PhotoController::class, ['except' => ['show', 'create', 'edit', 'update'], 'as' => 'admin']);
+
     });
 });

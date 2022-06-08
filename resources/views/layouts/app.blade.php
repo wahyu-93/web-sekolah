@@ -127,7 +127,7 @@
 
                         @can('photos.index')
                         <li class="{{ setActive('admin/photo') }}">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.photo.index') }}" class="nav-link">
                                 <i class="fas fa-image"></i>
                                 <span>Foto</span>
                             </a>

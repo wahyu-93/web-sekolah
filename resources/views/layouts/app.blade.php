@@ -151,7 +151,7 @@
 
                         @can('sliders.index')
                         <li class="{{ setActive('admin/slider') }}">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.slider.index') }}" class="nav-link">
                                 <i class="fas fa-laptop"></i>
                                 <span>Sliders</span>
                             </a>

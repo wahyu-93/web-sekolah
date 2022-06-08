@@ -58,13 +58,17 @@
                                         <td>{{ $tag->name }}</td>
                                         
                                         <td class="text-center">
-                                            <a href="{{ route('admin.tag.edit', [$tag->id]) }}" class="btn btn-sm btn-primary">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </a>
-
-                                            <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $tag->id }}">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                            @can('tags.edit')
+                                                <a href="{{ route('admin.tag.edit', [$tag->id]) }}" class="btn btn-sm btn-primary">
+                                                    <i class="fa fa-pencil-alt"></i>
+                                                </a>
+                                            @endcan
+                                            
+                                            @can('tags.delete')
+                                                <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $tag->id }}">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

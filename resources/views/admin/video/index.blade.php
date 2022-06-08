@@ -4,32 +4,32 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Agenda</h1>
+            <h1>Video</h1>
         </div>
 
         <div class="section-body">
             <div class="card">
                 <div class="card-header">
                     <h4>
-                        <i class="fas fa-bell"></i>
-                        Agenda
+                        <i class="fas fa-video"></i>
+                        Video
                     </h4>
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('admin.event.index') }}" method="GET">
+                    <form action="{{ route('admin.video.index') }}" method="GET">
                         <div class="form-group">
                             <div class="input-group mb-3">
-                                @can('events.create')
+                                @can('videos.create')
                                     <div class="input-group-prepend">
-                                        <a href="{{ route('admin.event.create') }}" class="btn btn-primary" style="padding-top: 10px;">
+                                        <a href="{{ route('admin.video.create') }}" class="btn btn-primary" style="padding-top: 10px;">
                                             <i class="fa fa-plus-circle"></i>
                                             Tambah
                                         </a>
                                     </div>
                                 @endcan
                                
-                                <input type="text" name="q" id="q" class="form-control" placeholder="cari berdasarkan event">
+                                <input type="text" name="q" id="q" class="form-control" placeholder="cari berdasarkan judul video">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-search"></i>
@@ -45,30 +45,31 @@
                             <thead>
                                 <tr>
                                     <th scope="col" style="text-align: center; width: 6%">No</th>
-                                    <th scope="col">Judul Agenda</th>
-                                    <th scope="col">Lokasi</th>
-                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Judul Video</th>
+                                    <th scope="col">Video</th>
                                     <th scope="col" style="width : 15%; text-align : center">Aksi</th>
                                 </tr>
                             </thead>
     
                             <tbody>
-                                @foreach($events as $no => $event)
+                                @foreach($videos as $no => $video)
                                     <tr>
-                                        <th scope="col" style="text-align: center;">{{++$no + ($events->currentPage()-1) * $events->perPage() }}</th>
-                                        <td>{{ $event->title }}</td>
-                                        <td>{{ $event->location }}</td>
-                                        <td>{{ $event->date }}</td>
+                                        <th scope="col" style="text-align: center;">{{++$no + ($videos->currentPage()-1) * $videos->perPage() }}</th>
+                                        <td>{{ $video->title }}</td>
+                                        <td class="text-center">
+                                            <iframe src="{{ $video->embed }}" frameborder="0"
+                                                allow="accelremoter; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        </td>
                                         
                                         <td class="text-center">
-                                            @can('events.edit')
-                                                <a href="{{ route('admin.event.edit', [$event->id]) }}" class="btn btn-sm btn-primary">
+                                            @can('videos.edit')
+                                                <a href="{{ route('admin.video.edit', [$video->id]) }}" class="btn btn-sm btn-primary">
                                                     <i class="fa fa-pencil-alt"></i>
                                                 </a>
                                             @endcan
 
-                                            @can('events.delete')
-                                                <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $event->id }}">
+                                            @can('videos.delete')
+                                                <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $video->id }}">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             @endcan
@@ -80,7 +81,7 @@
                         </table>
     
                         <div style="text-align: center">
-                            {{ $events->links("vendor.pagination.bootstrap-4") }}
+                            {{ $videos->links("vendor.pagination.bootstrap-4") }}
                         </div>
                     </div>
                 </div>
@@ -108,7 +109,7 @@
             if(isConfirm){
                 // ajax hapus
                 jQuery.ajax({
-                    url: "/admin/event/"+id,
+                    url: "/admin/video/"+id,
                     data: {
                         "id": id,
                         "_token": token

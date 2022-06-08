@@ -58,13 +58,17 @@
                                         <td>{{ $category->name }}</td>
                                         
                                         <td class="text-center">
-                                            <a href="{{ route('admin.category.edit', [$category->id]) }}" class="btn btn-sm btn-primary">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </a>
+                                            @can('categories.edit')
+                                                <a href="{{ route('admin.category.edit', [$category->id]) }}" class="btn btn-sm btn-primary">
+                                                    <i class="fa fa-pencil-alt"></i>
+                                                </a>
+                                            @endcan
 
-                                            <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $category->id }}">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                            @can('categories.delete')
+                                                <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $category->id }}">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

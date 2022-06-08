@@ -8,7 +8,7 @@
         </div>
 
         <div class="section-body">
-            @can('posts.create')
+            @can('photos.create')
                 <div class="card">
                     <div class="card-header">
                         <h4>
@@ -87,11 +87,13 @@
 
                                         <td>{{ $photo->caption }}</td>
                                         
-                                        <td class="text-center">
-                                            <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $photo->id }}">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
+                                        @can('photos.delete')
+                                            <td class="text-center">
+                                                <button onclick="Delete(this.id)" class="btn btn-sm btn-danger" id="{{ $photo->id }}">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        @endcan
                                     </tr>
                                 @endforeach
                                

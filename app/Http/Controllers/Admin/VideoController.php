@@ -50,9 +50,11 @@ class VideoController extends Controller
             'embed'     => 'required'
         ]);
 
+        $embed = str_replace('watch?v=', 'embed/', $request->input('embed'));
+
         $video = Video::create([
             'title'     => $request->input('title'),
-            'embed'     => $request->input('embed')
+            'embed'     => $embed
         ]);
 
         if($video){

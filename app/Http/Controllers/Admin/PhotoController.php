@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:photos.index|photos.create|photos.delete']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -32,13 +36,13 @@ class PhotoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'image'     => 'required|image|mimes:jpg,jpeg,png'
+            'image'     => 'required|image|mimes:jpg,jpeg,png',
             'caption'   => 'required'
         ]);
 
         // upload foto
         $image = $request->file('image');
-        $image->storeAs('publi/photos', $image->hashName());
+        $image->storeAs('public/photos', $image->hashName());
         
         $photo = Photo::create([
             'image'     => $image->hashName(),

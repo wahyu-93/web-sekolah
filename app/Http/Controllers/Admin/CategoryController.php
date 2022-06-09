@@ -51,7 +51,7 @@ class CategoryController extends Controller
 
         $category = Category::create([
             'name'  => $request->input('name'),
-            'slug'  => Str::slug($request->input('q'),'-')
+            'slug'  => Str::slug($request->input('name'),'-')
         ]);
 
         if($category){
@@ -89,7 +89,7 @@ class CategoryController extends Controller
 
         $category->update([
             'name'  => $request->input('name'),
-            'slug'  => Str::slug($request->input('q'),'-')
+            'slug'  => Str::slug($request->input('name'),'-')
         ]);
 
         if($category){

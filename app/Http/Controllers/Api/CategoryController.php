@@ -27,7 +27,7 @@ class CategoryController extends Controller
             return response()->json([
                 "response"  => [
                     "status"    => 200,
-                    "message"   => "Detail Data Kategori" . $category->name
+                    "message"   => "Detail Data Kategori " . $category->name
                 ],
                 "data"  => $category->posts()->latest()->paginate(6)
             ], 200);

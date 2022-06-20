@@ -27,7 +27,7 @@ class TagController extends Controller
             return response()->json([
                 "response"  => [
                     "status"    => 200,
-                    "message"   => "Detail Data Agenda"
+                    "message"   => "Detail Data Agenda" . $tag->name
                 ],
                 "data"  => $tag->posts()->latest()->paginate(6)
             ], 200);
